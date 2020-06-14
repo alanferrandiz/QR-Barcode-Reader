@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>USF Health 01</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"
+    />
+    <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+    <script src="https://d3js.org/d3-dsv.v1.min.js"></script>
+    <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+  </head>
+
+  <body onload="fn_search();">
+    <script>
+      function fn_search() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const txt_search_param = urlParams.get("txt_search");
+
+        txt_search.focus();
+        txt_search.select();
+        if (urlParams.get("txt_search")) {
+          d3.csv("src/data.csv").then(function(data) {
+            var datafiltrada = data.filter(function(d) {
+              return d.ply_id == txt_search_param;
+            });
+
+            if (datafiltrada[0] == null) {
+              txt_search.value = txt_search_param;
+              txt_status.value = "Record NOT found in database";
+              txt_status.className = "disabledinputred";
+              txt_search.focus();
+              txt_search.select();
+            } else {
+              txt_search.value = txt_search_param;
+              txt_status.value = "Record found in database";
+              txt_status.className = "disabledinputgreen";
+              txt_ply_id.value = datafiltrada[0].ply_id;
+              txt_ply_first_name.value = datafiltrada[0].ply_first_name;
+              txt_ply_last_name.value = datafiltrada[0].ply_last_name;
+              txt_ply_email.value = datafiltrada[0].ply_email;
+              txt_ply_height.value = datafiltrada[0].ply_height;
+              txt_ply_birthdate.value = datafiltrada[0].ply_birthdate;
+              img_ply_picture.src =
+                "https://alanferrandiz.files.wordpress.com/2020/06/" +
+                datafiltrada[0].ply_picture +
+                "";
+              txt_search.focus();
+              txt_search.select();
+            }
+          });
+        }
+      }
+    </script>
+
+    <span>
+      <a href="/">
+        <img
+          id="usf_main_logo"
+          src="https://alanferrandiz.files.wordpress.com/2020/06/usf_logo.jpg"
+        />
+      </a>
+    </span>
+
+    <div id="container">
+      <a id="btn-scan-qr">
+        <img
+          src="https://alanferrandiz.files.wordpress.com/2020/06/qr_scan-1.jpg"
+        />
+      </a>
+
+      <canvas hidden="" id="qr-canvas"></canvas>
+
+      <div id="qr-result" hidden="">
+        <span id="outputData"></span>
+      </div>
+    </div>
+
+    <form>
+      <input
+        id="txt_search"
+        name="txt_search"
+        placeholder=""
+        class="regularinput"
+        required
+      />
+
+      <input
+        id="btn_search"
+        name="btn_search"
+        class="btn"
+        type="submit"
+        value="Search"
+      />
+
+      <input
+        id="txt_status"
+        name="txt_status"
+        placeholder=""
+        class="disabledinput"
+        disabled
+      />
+
+      <label class="disabledinput">Player Id</label>
+      <input
+        id="txt_ply_id"
+        name="txt_ply_id"
+        class="disabledinputwhite"
+        disabled
+      />
+
+      <label class="disabledinput">First Name</label>
+      <input
+        id="txt_ply_first_name"
+        name="txt_ply_first_name"
+        placeholder=""
+        class="disabledinputwhite"
+        disabled
+      />
+      <label class="disabledinput">Last Name</label>
+      <input
+        id="txt_ply_last_name"
+        name="txt_ply_last_name"
+        placeholder=""
+        class="disabledinputwhite"
+        disabled
+      />
+      <label class="disabledinput">Email</label>
+      <input
+        id="txt_ply_email"
+        name="txt_ply_email"
+        placeholder=""
+        class="disabledinputwhite"
+        disabled
+      />
+      <label class="disabledinput">Height</label>
+      <input
+        id="txt_ply_height"
+        name="txt_ply_height"
+        placeholder=""
+        class="disabledinputwhite"
+        disabled
+      />
+      <label class="disabledinput">Birthdate</label>
+      <input
+        id="txt_ply_birthdate"
+        name="txt_ply_birthdate"
+        placeholder=""
+        class="disabledinputwhite"
+        disabled
+      />
+      <label class="disabledinput">Picture</label>
+      <img
+        id="img_ply_picture"
+        name="img_ply_picture"
+        class="ply_picture"
+        src="https://alanferrandiz.files.wordpress.com/2020/06/ply_0.jpg"
+        ;
+      />
+    </form>
+
+    <script src="./src/qrCodeScanner.js"></script>
+  </body>
+</html>

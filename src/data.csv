@@ -1,0 +1,11 @@
+ply_id,ply_first_name,ply_last_name,ply_email,ply_birthdate,ply_picture,ply_height
+1,Alan,Ferrandiz,aferrandiz@usf.edu,1982-02-04,ply_1.jpg,5'6"
+2,Walter,Silva,wsilva@usf.edu,1974-09-18,ply_2.jpg,5'8"
+3,Diego,Guillen,dguillen@usf.edu,1988-03-13,ply_3.jpg,5'10"
+4,Weimar,Ardila,wardila@usf.edu,1989-10-02,ply_4.jpg,5'9"
+5,Ana,Jones,ajones@usf.edu,1984-01-19,ply_5.jpg,5'3"
+6,Joe,Smith,jsmith@usf.edu,1978-09-29,ply_6.jpg,6'1"
+7,Brian,Wayne,bwayne@usf.edu,1996-01-08,ply_7.jpg,6'2"
+8,Anne,Li,ali@usf.edu,1992-05-01,ply_8.jpg,5'3"
+9,Tamara,Cox,tcox@usf.edu,1993-09-18,ply_9.jpg,5'5"
+10,Jennifer,Tyler,jtyler@usf.edu,1990-12-14,ply_10.jpg,5'4"
